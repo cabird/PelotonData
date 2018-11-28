@@ -29,20 +29,20 @@ namespace PelotonData
             return request;
         }
     }
-    class Program
+    public class Program
     {
         static int ThrottleMilliseconds = 3000;
 
         static void Main(string[] args)
         {
             var p = new Program();
-            p.Run();
+            p.RunAsync("username", "password").RunSynchronously();
         }
 
-        void Run()
+        async Task RunAsync(string username, string password)
         {
-            var auth = Authenticate("username", "password");
-            var rideData = GetWorkoutList(auth);
+            var auth = await AuthenticateAsync(username, password, null);
+            var rideData = await GetWorkoutListAsync(auth, null);
 
             string directory = @"C:\Users\cbird\Documents\PelotonData";
             bool overwriteFiles = true;
@@ -53,7 +53,7 @@ namespace PelotonData
                 {
                     string filename = Path.Combine(directory, GetFileNameFromRideDatum(ride));
                     if (File.Exists(filename) && !overwriteFiles) continue;
-                    var data = GetWorkoutMetrics(ride.id);
+                    var data = await GetWorkoutMetricsAsync(ride, null);
                     OutputRideCSV(data, filename);
                 }
                 catch (Exception ex)
@@ -61,11 +61,11 @@ namespace PelotonData
                     Debug.WriteLine(ex.ToString());
                     Debug.WriteLine("\n\n*** Continuing ***");
                 }
-                Throttle();
+                await Throttle();
             }
         }
 
-        AuthResponse Authenticate(string user, string password)
+        public async Task<AuthResponse> AuthenticateAsync(string user, string password, ILogger logger)
         {
             string authURL = "https://api.pelotoncycle.com/auth/login";
             var info = new { password = password, username_or_email = user };
@@ -74,7 +74,16 @@ namespace PelotonData
             using (var client = new WebClient())
             {
                 client.Headers[HttpRequestHeader.ContentType] = "application/json";
-                var response = client.UploadString(authURL, infoAsString);
+                var responseTask = client.UploadStringTaskAsync(authURL, infoAsString);
+
+                string response = await responseTask;
+
+                if (logger != null) logger.Log("sleeping");
+                var sleepTask = new Task(() => Thread.Sleep(3000));
+                sleepTask.Start();
+                await sleepTask;
+
+                if (logger != null) logger.Log("done sleeping");
 
                 Debug.WriteLine("  " + response.Substring(0, 50));
                 Debug.WriteLine($"  Length: {response.Length}");
@@ -84,17 +93,23 @@ namespace PelotonData
             }
         }
 
-        string GetFileNameFromRideDatum(RideDatum ride)
+        
+
+        public string GetFileNameFromRideDatum(RideDatum ride)
         {
             Regex rgx = new Regex("[^a-zA-Z0-9]");
             string str = rgx.Replace(ride.ride.title, "_");
-            DateTime dateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, System.DateTimeKind.Utc);
-            dateTime = dateTime.AddSeconds(ride.device_time_created_at);
-            string filename = dateTime.ToString("yyy-dd-MM_HH-mm") + "_" + str + ".csv";
+            string filename = DateTimeFromEpochSeconds(ride.device_time_created_at).ToString("yyy-dd-MM_HH-mm") + "_" + str + ".csv";
             return filename;
         }
 
-        List<RideDatum> GetWorkoutList(AuthResponse auth)
+        DateTime DateTimeFromEpochSeconds(int seconds)
+        {
+            DateTime dateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, System.DateTimeKind.Utc);
+            return dateTime.AddSeconds(seconds);
+         }
+
+        public async Task<List<RideDatum>> GetWorkoutListAsync(AuthResponse auth, ILogger logger)
         {
             var rideDataList = new List<RideDatum>();
             string cookie = $"peloton_session_id={auth.session_id}";
@@ -114,18 +129,22 @@ namespace PelotonData
                     client.Headers["authority"] = "api.onepeloton.com";
                     client.Headers["x-requested-with"] = "XmlHttpRequest";
                     client.Headers["peloton-platform"] = "web";
-                    var response1 = client.DownloadString(url);
 
-                    Debug.WriteLine("  " + response1.Substring(0, 50));
-                    Debug.WriteLine($"  Length: {response1.Length}");
+                    if (logger != null) logger.Log($"Requesting page {pageNum + 1}");
+                    var response = await client.DownloadStringTaskAsync(new Uri(url));
+                    
+                    Debug.WriteLine("  " + response.Substring(0, 50));
+                    Debug.WriteLine($"  Length: {response.Length}");
 
-                    WorkoutList workoutList = JsonConvert.DeserializeObject<WorkoutList>(response1);
+                    WorkoutList workoutList = JsonConvert.DeserializeObject<WorkoutList>(response);
+                    if (logger != null) logger.Log($"Page retrieved, contains {workoutList.count} workouts");
+
                     rideDataList.AddRange(workoutList.data);
 
                     if (workoutList.show_next)
                     {
                         pageNum++;
-                        Throttle();
+                        await Throttle();
                     } else
                     {
                         break;
@@ -135,27 +154,30 @@ namespace PelotonData
             return rideDataList;
         }
 
-        public void Throttle()
+        public async Task Throttle()
         {
-            Thread.Sleep(ThrottleMilliseconds);
+            await Task.Delay(ThrottleMilliseconds);
         }
 
-        WorkoutSessionObject GetWorkoutMetrics(string workoutId)
+        public async Task<WorkoutSessionObject> GetWorkoutMetricsAsync(RideDatum ride, ILogger logger)
         {
             using (var client = new WebClient())
             {
                 client.Headers["accept"] = "application/json";
-                string url = $"https://api.onepeloton.com/api/workout/{workoutId}/performance_graph?every_n=5";
-                var response = client.DownloadString(url);
+                string url = $"https://api.onepeloton.com/api/workout/{ride.id}/performance_graph?every_n=5";
+
+                if (logger != null) logger.Log($"Downloading workout: {ride.ride.title} on {DateTimeFromEpochSeconds(ride.device_time_created_at).ToShortDateString()}");
+                var response = await client.DownloadStringTaskAsync(url);
                 Debug.WriteLine("  " + response.Substring(0, 50));
                 Debug.WriteLine($"  Length: {response.Length}");
+                if (logger != null) logger.Log($"Done downloading");
 
                 WorkoutSessionObject session = JsonConvert.DeserializeObject<WorkoutSessionObject>(response);
                 return session;
             }
         }
 
-        void OutputRideCSV(WorkoutSessionObject session, string filename)
+        public void OutputRideCSV(WorkoutSessionObject session, string filename)
         {
             List<string> lines = new List<string>();
             var header = "elapsed_seconds," + string.Join(",", session.metrics.Select(m => m.slug));

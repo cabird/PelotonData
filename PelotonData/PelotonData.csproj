@@ -47,6 +47,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ExtensionMethods.cs" />
+    <Compile Include="ILogger.cs" />
     <Compile Include="JSONClasses\Authentication.cs" />
     <Compile Include="JSONClasses\WorkoutList.cs" />
     <Compile Include="JSONClasses\WorkoutSession.cs" />
