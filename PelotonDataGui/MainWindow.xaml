@@ -17,23 +17,24 @@
             <RowDefinition Height="10*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="120" />
             <ColumnDefinition Width="2*" />
-            <ColumnDefinition Width="2*" />
-            <ColumnDefinition Width="2*" />
-            
+            <ColumnDefinition Width="85"/>
         </Grid.ColumnDefinitions>
         <TextBlock  Height="33" Margin="0" TextWrapping="Wrap" Text="Description of stuff" VerticalAlignment="Top" Width="430" HorizontalAlignment="Stretch" Grid.RowSpan="3"/>
-        <Label Content="Username" Height="24" Margin="0" VerticalAlignment="Top" Grid.Row="1" Grid.Column="0"/>
-        <TextBox Name="UsernameTextBox" HorizontalAlignment="Stretch" Height="24" Margin="0" TextWrapping="Wrap" Text="cabird" VerticalAlignment="Top"  Grid.Row="1" Grid.Column="1"/>
-        <Label Content="Password" HorizontalAlignment="Left" Height="24" Margin="0" VerticalAlignment="Top" Width="73" Grid.Row="2" Grid.Column="0"/>
-        <TextBox Name="PasswordTextBox" HorizontalAlignment="Stretch" Height="24" Margin="0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"  Grid.Row="2" Grid.Column="1"/>
-        <Label Content="Output Directory" HorizontalAlignment="Left" Height="24" Margin="0" VerticalAlignment="Top" Width="114" Grid.Row="3" Grid.Column="0"/>
-        <TextBox Name="OutputDirectoryTextBox" HorizontalAlignment="Stretch" Height="24" Margin="0" TextWrapping="Wrap" Text="C:\Users\cbird\Documents\PelotonData\test" VerticalAlignment="Top"  Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2"/>
-        <Button Name="GetDataButton" Content="Get Data" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Top" Width="88" Click="GetDataButton_Click" Grid.Row="4" Grid.Column="0" />
-        <Button Name="OutputDirectoryBrowseButton" Content="Browse" HorizontalAlignment="Right" Margin="0" VerticalAlignment="Top" Width="75" Grid.Row="4" Grid.Column="2"/>
+        <Label Content="Username" Height="30" Margin="0" VerticalAlignment="Top" Grid.Row="1" Grid.Column="0"/>
+        <TextBox Name="UsernameTextBox" HorizontalAlignment="Stretch" Height="24" Margin="0" TextWrapping="Wrap" VerticalAlignment="Center"  Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"/>
+        
+        <Label Content="Password" HorizontalAlignment="Left" Height="30" Margin="0" VerticalAlignment="Center" Width="73" Grid.Row="2" Grid.Column="0"/>
+        <PasswordBox Name="PasswordTextBox" HorizontalAlignment="Stretch" Height="24" Margin="0" VerticalAlignment="Center" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2"/>
+        
+        <Label Content="Output Directory" HorizontalAlignment="Left" Height="30" Margin="0" VerticalAlignment="Top" Width="114" Grid.Row="3" Grid.Column="0"/>
+        <TextBox Name="OutputDirectoryTextBox" HorizontalAlignment="Stretch" Height="24" Margin="0" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Row="3" Grid.Column="1"/>
+        <Button Name="OutputDirectoryBrowseButton" Content="Browse" HorizontalAlignment="Right" Margin="10,0,0,0" VerticalAlignment="Center" Width="75" Grid.Row="3" Grid.Column="2" Click="OutputDirectoryBrowseButton_Click"/>
 
-        <ProgressBar Name="ProgressBar" HorizontalAlignment="Stretch" Height="15" Margin="0" VerticalAlignment="Top"  Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="3"/>
-        <TextBox Name="LogTextBox" HorizontalAlignment="Stretch"  Margin="0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Stretch"  Grid.Row="6" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="3"/>
+        <Button Name="GetDataButton" Content="Get Data" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Center" Width="88" Click="GetDataButton_Click" Grid.Row="4" Grid.Column="0" />
+        <ProgressBar Name="ProgressBar" HorizontalAlignment="Stretch" Height="15" Margin="0" VerticalAlignment="Center"  Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="3"/>
+        <TextBox Name="LogTextBox" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto" HorizontalAlignment="Stretch"  Margin="0" TextWrapping="Wrap" Text="" VerticalAlignment="Stretch"  Grid.Row="6" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="3"/>
         
 
     </Grid>

@@ -31,7 +31,7 @@ namespace PelotonData
     }
     public class Program
     {
-        static int ThrottleMilliseconds = 3000;
+        static int ThrottleMilliseconds = 2000;
 
         static void Main(string[] args)
         {
@@ -75,15 +75,7 @@ namespace PelotonData
             {
                 client.Headers[HttpRequestHeader.ContentType] = "application/json";
                 var responseTask = client.UploadStringTaskAsync(authURL, infoAsString);
-
                 string response = await responseTask;
-
-                if (logger != null) logger.Log("sleeping");
-                var sleepTask = new Task(() => Thread.Sleep(3000));
-                sleepTask.Start();
-                await sleepTask;
-
-                if (logger != null) logger.Log("done sleeping");
 
                 Debug.WriteLine("  " + response.Substring(0, 50));
                 Debug.WriteLine($"  Length: {response.Length}");
@@ -116,7 +108,7 @@ namespace PelotonData
             int pageNum = 0;
             while (true)
             {
-                string url = $"https://api.onepeloton.com/api/user/{auth.user_id}/workouts?joins=ride&limit=10&page={pageNum}";
+                string url = $"https://api.onepeloton.com/api/user/{auth.user_id}/workouts?joins=ride&limit=20&page={pageNum}";
                 using (var client = new WebClient())
                 {
                     client.Headers.Add(HttpRequestHeader.Cookie, cookie);
