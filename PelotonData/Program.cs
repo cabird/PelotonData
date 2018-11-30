@@ -11,6 +11,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Newtonsoft;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using PelotonData.JSONClasses;
 using PelotonData.JSONClasses.EventDetails;
 using PelotonData.JSONClasses.WorkoutList;
@@ -164,7 +165,7 @@ namespace PelotonData
 
                 if (SaveJsonPath != null)
                 {
-                    var formattedJson = JsonConvert.SerializeObject(JsonConvert.DeserializeObject(response), Formatting.Indented);
+                    var formattedJson = JToken.Parse(response).ToString(Formatting.Indented);
                     File.WriteAllText(SaveJsonPath, formattedJson);
                 }
                 EventDetails details = JsonConvert.DeserializeObject<EventDetails>(response);
