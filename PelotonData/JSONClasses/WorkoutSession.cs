@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PelotonData.JSONClasses
+namespace PelotonData.JSONClasses.WorkoutSessionMetrics
 {
-    public class WorkoutSessionObject
+    public class WorkoutSessionMetrics
     {
         public bool is_class_plan_shown { get; set; }
         public Average_Summaries[] average_summaries { get; set; }

@@ -1,22 +1,14 @@
-﻿using PelotonData;
+﻿using Microsoft.WindowsAPICodePack.Dialogs;
+using PelotonData;
 using PelotonData.JSONClasses;
+using PelotonData.JSONClasses.WorkoutList;
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.IO;
 using System.Net;
-using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using Microsoft.WindowsAPICodePack.Dialogs;
 
 namespace PelotonDataGui
 {
@@ -91,6 +83,12 @@ namespace PelotonDataGui
 
             await SetProgress(0);
 
+            if (!Directory.Exists(OutputDirectoryTextBox.Text))
+            {
+                Logger.LogError($"The output directory does not exist: {OutputDirectoryTextBox.Text}\nAborting.");
+                return;
+            }
+
             Logger.Log("Authenticating");
             var authTask = p.AuthenticateAsync(UsernameTextBox.Text, PasswordTextBox.Password, this);
             try
@@ -133,11 +131,19 @@ namespace PelotonDataGui
             {
                 try
                 {
-                    string filename = p.GetFileNameFromRideDatum(ride);
-                    string path = System.IO.Path.Combine(OutputDirectoryTextBox.Text, filename);
-                    var data = await p.GetWorkoutMetricsAsync(ride, this);
-                    Logger.Log($"Writing data to {path}");
-                    p.OutputRideCSV(data, path);
+                    string filenameBase = Path.Combine(OutputDirectoryTextBox.Text, p.GetFileNameBaseFromRideDatum(ride));
+                    string path = filenameBase + "_Metrics.csv";
+                    if (File.Exists(path))
+                    {
+                        Logger.Log($"Skipping workout: {ride.ride.title} on {Util.DateTimeFromEpochSeconds(ride.device_time_created_at).ToShortDateString()} because file already exists");
+                    }
+                    else
+                    {
+                        var data = await p.GetWorkoutMetricsAsync(ride, this, filenameBase + "_Metrics.json");
+                        Logger.Log($"Writing data to {path}");
+                        p.OutputRideCSV(data, path);
+                        var details = await p.GetWorkoutEventDetails(ride, this, filenameBase + "_EventDetails.json");
+                    }
                 } catch (Exception ex)
                 {
                     HandleException(ex);
@@ -146,6 +152,8 @@ namespace PelotonDataGui
                 progress += progressStep;
                 await SetProgress(progress);
             }
+            await SetProgress(100);
+            Logger.Log("Successfully Completed Data Download!");
         }
 
         private void OutputDirectoryBrowseButton_Click(object sender, RoutedEventArgs e)

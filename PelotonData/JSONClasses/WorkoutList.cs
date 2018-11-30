@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PelotonData.JSONClasses
+namespace PelotonData.JSONClasses.WorkoutList
 {
     public class WorkoutList
     {

@@ -5,37 +5,37 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PelotonDataGui"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="739.316">
+        Title="Peloton Workout Data Download Utility" Height="450" Width="739.316">
     <Grid Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
         <Grid.RowDefinitions>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="10*" />
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="120" />
-            <ColumnDefinition Width="2*" />
-            <ColumnDefinition Width="85"/>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition />
+            <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
-        <TextBlock  Height="33" Margin="0" TextWrapping="Wrap" Text="Description of stuff" VerticalAlignment="Top" Width="430" HorizontalAlignment="Stretch" Grid.RowSpan="3"/>
+        <TextBlock  Margin="10,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Stretch" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3"><Run Text="Enter your Peloton account Username and Password. Then specify the directory to output the data files to and click &quot;Get Data&quot;.  Each workout's data will be downloaded and stored in comma separated values format.  If a workout's file is already present in the output directory, it will not be downloaded again."/><LineBreak/><Run Text="Source can be found at http://www.github.com/cabird/PelotonData"/><LineBreak/><Run Text="Questions/Feature Requests/Bug Reports can be sent to cabird@gmail.com (but this is a side project, so...)"/></TextBlock>
         <Label Content="Username" Height="30" Margin="0" VerticalAlignment="Top" Grid.Row="1" Grid.Column="0"/>
         <TextBox Name="UsernameTextBox" HorizontalAlignment="Stretch" Height="24" Margin="0" TextWrapping="Wrap" VerticalAlignment="Center"  Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"/>
-        
+
         <Label Content="Password" HorizontalAlignment="Left" Height="30" Margin="0" VerticalAlignment="Center" Width="73" Grid.Row="2" Grid.Column="0"/>
         <PasswordBox Name="PasswordTextBox" HorizontalAlignment="Stretch" Height="24" Margin="0" VerticalAlignment="Center" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2"/>
-        
+
         <Label Content="Output Directory" HorizontalAlignment="Left" Height="30" Margin="0" VerticalAlignment="Top" Width="114" Grid.Row="3" Grid.Column="0"/>
         <TextBox Name="OutputDirectoryTextBox" HorizontalAlignment="Stretch" Height="24" Margin="0" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Row="3" Grid.Column="1"/>
         <Button Name="OutputDirectoryBrowseButton" Content="Browse" HorizontalAlignment="Right" Margin="10,0,0,0" VerticalAlignment="Center" Width="75" Grid.Row="3" Grid.Column="2" Click="OutputDirectoryBrowseButton_Click"/>
 
-        <Button Name="GetDataButton" Content="Get Data" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Center" Width="88" Click="GetDataButton_Click" Grid.Row="4" Grid.Column="0" />
-        <ProgressBar Name="ProgressBar" HorizontalAlignment="Stretch" Height="15" Margin="0" VerticalAlignment="Center"  Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="3"/>
+        <Button Name="GetDataButton" Content="Get Data" HorizontalAlignment="Left" Margin="0,5" VerticalAlignment="Center" Width="88" Click="GetDataButton_Click" Grid.Row="4" Grid.Column="0" />
+        <ProgressBar Name="ProgressBar" HorizontalAlignment="Stretch" Height="15" Margin="0,5" VerticalAlignment="Center"  Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="3"/>
         <TextBox Name="LogTextBox" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto" HorizontalAlignment="Stretch"  Margin="0" TextWrapping="Wrap" Text="" VerticalAlignment="Stretch"  Grid.Row="6" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="3"/>
-        
+
 
     </Grid>
 </Window>
