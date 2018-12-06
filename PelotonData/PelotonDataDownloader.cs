@@ -33,13 +33,15 @@ namespace PelotonData
             return request;
         }
     }
-    public class Program
+    public class PelotonDataDownloader
     {
         static int ThrottleMilliseconds = 2000;
 
+        JsonSerializerSettings JSonSerializerSettings = new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore };
+
         static void Main(string[] args)
         {
-            var p = new Program();
+            var p = new PelotonDataDownloader();
             p.RunAsync("username", "password").RunSynchronously();
         }
 
@@ -70,7 +72,7 @@ namespace PelotonData
             }
         }
 
-        public async Task<AuthResponse> AuthenticateAsync(string user, string password, ILogger logger)
+        public async Task<AuthResponse> AuthenticateAsync(string user, string password, ILogger logger, string SaveJsonPath=null)
         {
             string authURL = "https://api.pelotoncycle.com/auth/login";
             var info = new { password = password, username_or_email = user };
@@ -82,10 +84,16 @@ namespace PelotonData
                 var responseTask = client.UploadStringTaskAsync(authURL, infoAsString);
                 string response = await responseTask;
 
+                if (SaveJsonPath != null)
+                {
+                    var formattedJson = JToken.Parse(response).ToString(Formatting.Indented);
+                    File.WriteAllText(SaveJsonPath, formattedJson);
+                }
+
                 Debug.WriteLine("  " + response.Substring(0, 50));
                 Debug.WriteLine($"  Length: {response.Length}");
 
-                var authResponse = JsonConvert.DeserializeObject<AuthResponse>(response);
+                var authResponse = JsonConvert.DeserializeObject<AuthResponse>(response, JSonSerializerSettings);
                 return authResponse;
             }
         }
@@ -127,7 +135,7 @@ namespace PelotonData
                     Debug.WriteLine("  " + response.Substring(0, 50));
                     Debug.WriteLine($"  Length: {response.Length}");
 
-                    WorkoutList workoutList = JsonConvert.DeserializeObject<WorkoutList>(response);
+                    WorkoutList workoutList = JsonConvert.DeserializeObject<WorkoutList>(response, JSonSerializerSettings);
                     if (logger != null) logger.Log($"Page retrieved, contains {workoutList.count} workouts");
 
                     rideDataList.AddRange(workoutList.data);
@@ -168,8 +176,19 @@ namespace PelotonData
                     var formattedJson = JToken.Parse(response).ToString(Formatting.Indented);
                     File.WriteAllText(SaveJsonPath, formattedJson);
                 }
-                EventDetails details = JsonConvert.DeserializeObject<EventDetails>(response);
+                EventDetails details = JsonConvert.DeserializeObject<EventDetails>(response, JSonSerializerSettings);
                 return details;
+            }
+        }
+
+        public async Task<WorkoutSessionMetrics> SimpleGetWorkoutSessionMetricsAsync(string id, int secondsPerObservation)
+        {
+            using (var client = new WebClient())
+            {
+                client.Headers["accept"] = "application/json";
+                string url = $"https://api.onepeloton.com/api/workout/{id}/performance_graph?every_n={secondsPerObservation}";
+                var response = await client.DownloadStringTaskAsync(url);
+                return JsonConvert.DeserializeObject<WorkoutSessionMetrics>(response, JSonSerializerSettings);
             }
         }
 
@@ -178,7 +197,7 @@ namespace PelotonData
             using (var client = new WebClient())
             {
                 client.Headers["accept"] = "application/json";
-                string url = $"https://api.onepeloton.com/api/workout/{ride.id}/performance_graph?every_n=5";
+                string url = $"https://api.onepeloton.com/api/workout/{ride.id}/performance_graph?every_n=1";
 
                 if (logger != null) logger.Log($"Downloading metrics for workout: {ride.ride.title} on {Util.DateTimeFromEpochSeconds(ride.device_time_created_at).ToShortDateString()}");
                 var response = await client.DownloadStringTaskAsync(url);
@@ -188,10 +207,10 @@ namespace PelotonData
 
                 if (SaveJsonPath != null)
                 {
-                    var formattedJson = JsonConvert.SerializeObject(JsonConvert.DeserializeObject(response), Formatting.Indented);
+                    var formattedJson = JsonConvert.SerializeObject(JsonConvert.DeserializeObject(response, JSonSerializerSettings), Formatting.Indented, JSonSerializerSettings);
                     File.WriteAllText(SaveJsonPath, formattedJson);
                 }
-                WorkoutSessionMetrics session = JsonConvert.DeserializeObject<WorkoutSessionMetrics>(response);
+                WorkoutSessionMetrics session = JsonConvert.DeserializeObject<WorkoutSessionMetrics>(response, JSonSerializerSettings);
                 return session;
             }
         }

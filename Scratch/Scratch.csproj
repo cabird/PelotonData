@@ -4,15 +4,13 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{08C3882F-9669-4C82-A005-1BE8657732B7}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <RootNamespace>PelotonData</RootNamespace>
-    <AssemblyName>PelotonData</AssemblyName>
+    <ProjectGuid>{0D4FCDED-D5EA-4D27-B887-4E8C8F9037D6}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>Scratch</RootNamespace>
+    <AssemblyName>Scratch</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -33,9 +31,6 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup>
-    <StartupObject />
-  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -50,21 +45,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ExtensionMethods.cs" />
-    <Compile Include="ILogger.cs" />
-    <Compile Include="JSONClasses\Authentication.cs" />
-    <Compile Include="JSONClasses\EventDetails.cs" />
-    <Compile Include="JSONClasses\WorkoutList.cs" />
-    <Compile Include="JSONClasses\WorkoutSession.cs" />
-    <Compile Include="PelotonDataDownloader.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Util.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PelotonData\PelotonData.csproj">
+      <Project>{08c3882f-9669-4c82-a005-1be8657732b7}</Project>
+      <Name>PelotonData</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

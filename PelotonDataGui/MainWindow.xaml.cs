@@ -79,18 +79,19 @@ namespace PelotonDataGui
         {
             double progress = 0.0;
 
-            var p = new Program();
+            var p = new PelotonDataDownloader();
 
             await SetProgress(0);
 
-            if (!Directory.Exists(OutputDirectoryTextBox.Text))
+            string outputDirectory = OutputDirectoryTextBox.Text;
+
+            if (!Directory.Exists(outputDirectory))
             {
-                Logger.LogError($"The output directory does not exist: {OutputDirectoryTextBox.Text}\nAborting.");
+                Logger.LogError($"The output directory does not exist: {outputDirectory}\nAborting.");
                 return;
             }
-
             Logger.Log("Authenticating");
-            var authTask = p.AuthenticateAsync(UsernameTextBox.Text, PasswordTextBox.Password, this);
+            var authTask = p.AuthenticateAsync(UsernameTextBox.Text, PasswordTextBox.Password, this, Path.Combine(outputDirectory, "authentication_response.json"));
             try
             {
                 auth = await authTask;
