@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28010.2046
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29009.5
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PelotonData", "PelotonData\PelotonData.csproj", "{08C3882F-9669-4C82-A005-1BE8657732B7}"
 EndProject
@@ -28,7 +28,6 @@ Global
 		{AC76E67D-6BA5-4E83-B07C-92669A68B2F1}.Debug|Any CPU.ActiveCfg = Debug
 		{AC76E67D-6BA5-4E83-B07C-92669A68B2F1}.Release|Any CPU.ActiveCfg = Release
 		{0D4FCDED-D5EA-4D27-B887-4E8C8F9037D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0D4FCDED-D5EA-4D27-B887-4E8C8F9037D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0D4FCDED-D5EA-4D27-B887-4E8C8F9037D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0D4FCDED-D5EA-4D27-B887-4E8C8F9037D6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection

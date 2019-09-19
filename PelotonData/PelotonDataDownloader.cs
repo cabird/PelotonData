@@ -74,13 +74,20 @@ namespace PelotonData
 
         public async Task<AuthResponse> AuthenticateAsync(string user, string password, ILogger logger, string SaveJsonPath=null)
         {
-            string authURL = "https://api.pelotoncycle.com/auth/login";
+            string authURL = "https://api.onepeloton.com/auth/login";
             var info = new { password = password, username_or_email = user };
             string infoAsString = JsonConvert.SerializeObject(info);
 
             using (var client = new WebClient())
             {
                 client.Headers[HttpRequestHeader.ContentType] = "application/json";
+
+                ServicePointManager.Expect100Continue = true;
+                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+
+                ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
+
+
                 var responseTask = client.UploadStringTaskAsync(authURL, infoAsString);
                 string response = await responseTask;
 
