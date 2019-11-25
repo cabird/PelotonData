@@ -15,26 +15,38 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_56FA7E0040E4056DE8C5CBE25DAF8214"
-        "OwnerKey" = "8:_75F449C1A507E0BCEB3F3D8C4C6149C0"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_56FA7E0040E4056DE8C5CBE25DAF8214"
+        "MsmKey" = "8:_3F7304F513BECEAB74591F47B3548807"
         "OwnerKey" = "8:_EB4A06A638D84A5C89997FD3377BD5D9"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_75F449C1A507E0BCEB3F3D8C4C6149C0"
+        "MsmKey" = "8:_478BA6E97167D9DEA15F7B2E39950748"
         "OwnerKey" = "8:_EB4A06A638D84A5C89997FD3377BD5D9"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_837C10752ED83EDA635A1B86A9BAB9B3"
+        "MsmKey" = "8:_478BA6E97167D9DEA15F7B2E39950748"
+        "OwnerKey" = "8:_EFE8E005422A4A02BD73415D53339826"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_478BA6E97167D9DEA15F7B2E39950748"
+        "OwnerKey" = "8:_3F7304F513BECEAB74591F47B3548807"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_7E3FFFA91822F2D2277804F6B73DAD8D"
         "OwnerKey" = "8:_EB4A06A638D84A5C89997FD3377BD5D9"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_7E3FFFA91822F2D2277804F6B73DAD8D"
+        "OwnerKey" = "8:_B75E23FBABF45132E0D786945EECC6F1"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -45,14 +57,14 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_A17B1CCD10AF960D0CEB80E5D180C682"
-        "OwnerKey" = "8:_EB4A06A638D84A5C89997FD3377BD5D9"
+        "MsmKey" = "8:_9360C2590B96AD5C8A587217C4F795D6"
+        "OwnerKey" = "8:_EFE8E005422A4A02BD73415D53339826"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_A17B1CCD10AF960D0CEB80E5D180C682"
-        "OwnerKey" = "8:_837C10752ED83EDA635A1B86A9BAB9B3"
+        "MsmKey" = "8:_B75E23FBABF45132E0D786945EECC6F1"
+        "OwnerKey" = "8:_EB4A06A638D84A5C89997FD3377BD5D9"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -63,8 +75,8 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_9360C2590B96AD5C8A587217C4F795D6"
+        "MsmKey" = "8:_EFE8E005422A4A02BD73415D53339826"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -76,25 +88,37 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_75F449C1A507E0BCEB3F3D8C4C6149C0"
+        "OwnerKey" = "8:_EFE8E005422A4A02BD73415D53339826"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_837C10752ED83EDA635A1B86A9BAB9B3"
+        "OwnerKey" = "8:_3F7304F513BECEAB74591F47B3548807"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_A17B1CCD10AF960D0CEB80E5D180C682"
+        "OwnerKey" = "8:_478BA6E97167D9DEA15F7B2E39950748"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_56FA7E0040E4056DE8C5CBE25DAF8214"
+        "OwnerKey" = "8:_B75E23FBABF45132E0D786945EECC6F1"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_7E3FFFA91822F2D2277804F6B73DAD8D"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_9360C2590B96AD5C8A587217C4F795D6"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -115,6 +139,22 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.6.1"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.6.1 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.6.1"
+                    }
+                }
+            }
         }
         "Release"
         {
@@ -131,6 +171,22 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.6.1"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.6.1 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.6.1"
+                    }
+                }
+            }
         }
     }
     "Deployable"
@@ -160,14 +216,45 @@
         }
         "File"
         {
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_56FA7E0040E4056DE8C5CBE25DAF8214"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_3F7304F513BECEAB74591F47B3548807"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:PelotonData, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_3F7304F513BECEAB74591F47B3548807"
+                    {
+                    "Name" = "8:PelotonData.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:PelotonData.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_65D1F19073DD4E199E49340DEC0F9189"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:TRUE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_478BA6E97167D9DEA15F7B2E39950748"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
             "AssemblyAsmDisplayName" = "8:Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_56FA7E0040E4056DE8C5CBE25DAF8214"
+                    "_478BA6E97167D9DEA15F7B2E39950748"
                     {
                     "Name" = "8:Newtonsoft.Json.dll"
                     "Attributes" = "3:512"
@@ -191,51 +278,20 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_75F449C1A507E0BCEB3F3D8C4C6149C0"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_7E3FFFA91822F2D2277804F6B73DAD8D"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:PelotonData, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:Microsoft.WindowsAPICodePack, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_75F449C1A507E0BCEB3F3D8C4C6149C0"
+                    "_7E3FFFA91822F2D2277804F6B73DAD8D"
                     {
-                    "Name" = "8:PelotonData.exe"
+                    "Name" = "8:Microsoft.WindowsAPICodePack.dll"
                     "Attributes" = "3:512"
                     }
                 }
-            "SourcePath" = "8:PelotonData.exe"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_65D1F19073DD4E199E49340DEC0F9189"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_837C10752ED83EDA635A1B86A9BAB9B3"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Microsoft.WindowsAPICodePack.Shell, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_837C10752ED83EDA635A1B86A9BAB9B3"
-                    {
-                    "Name" = "8:Microsoft.WindowsAPICodePack.Shell.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:Microsoft.WindowsAPICodePack.Shell.dll"
+            "SourcePath" = "8:Microsoft.WindowsAPICodePack.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_65D1F19073DD4E199E49340DEC0F9189"
@@ -284,20 +340,20 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_A17B1CCD10AF960D0CEB80E5D180C682"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_B75E23FBABF45132E0D786945EECC6F1"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Microsoft.WindowsAPICodePack, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:Microsoft.WindowsAPICodePack.Shell, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_A17B1CCD10AF960D0CEB80E5D180C682"
+                    "_B75E23FBABF45132E0D786945EECC6F1"
                     {
-                    "Name" = "8:Microsoft.WindowsAPICodePack.dll"
+                    "Name" = "8:Microsoft.WindowsAPICodePack.Shell.dll"
                     "Attributes" = "3:512"
                     }
                 }
-            "SourcePath" = "8:Microsoft.WindowsAPICodePack.dll"
+            "SourcePath" = "8:Microsoft.WindowsAPICodePack.Shell.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_65D1F19073DD4E199E49340DEC0F9189"
@@ -370,22 +426,22 @@
         "Product"
         {
         "Name" = "8:Microsoft Visual Studio"
-        "ProductName" = "8:PelotonDataInstaller"
-        "ProductCode" = "8:{D9E5D8DD-5BAC-4AD6-828E-FC4305867EE6}"
-        "PackageCode" = "8:{A0C0CEA2-EE78-4510-B720-CB4A7B2A6F88}"
+        "ProductName" = "8:Peloton Data GUI"
+        "ProductCode" = "8:{DC949F7D-9974-41D4-90E6-BD4437908420}"
+        "PackageCode" = "8:{03E6A8E8-73BE-46DD-8B0C-36614DA4834D}"
         "UpgradeCode" = "8:{DF908064-1D7C-4A31-9ECC-3880A8D82509}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:FALSE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.0.0"
-        "Manufacturer" = "8:Default Company Name"
+        "ProductVersion" = "8:1.1.0"
+        "Manufacturer" = "8:Christian Bird"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
         "Title" = "8:PelotonDataInstaller"
         "Subject" = "8:"
-        "ARPCONTACT" = "8:Default Company Name"
+        "ARPCONTACT" = "8:Christian Bird"
         "Keywords" = "8:"
         "ARPCOMMENTS" = "8:"
         "ARPURLINFOABOUT" = "8:"
@@ -1026,6 +1082,34 @@
             "OutputConfiguration" = "8:"
             "OutputGroupCanonicalName" = "8:Built"
             "OutputProjectGuid" = "8:{A1C36F5B-C414-4A3A-BA27-FA3604D8D068}"
+            "ShowKeyOutput" = "11:TRUE"
+                "ExcludeFilters"
+                {
+                }
+            }
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_EFE8E005422A4A02BD73415D53339826"
+            {
+            "SourcePath" = "8:..\\PelotonData\\obj\\Debug\\PelotonData.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_65D1F19073DD4E199E49340DEC0F9189"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            "ProjectOutputGroupRegister" = "3:1"
+            "OutputConfiguration" = "8:"
+            "OutputGroupCanonicalName" = "8:Built"
+            "OutputProjectGuid" = "8:{08C3882F-9669-4C82-A005-1BE8657732B7}"
             "ShowKeyOutput" = "11:TRUE"
                 "ExcludeFilters"
                 {

@@ -9,6 +9,7 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Reflection;
 
 namespace PelotonDataGui
 {
@@ -23,6 +24,10 @@ namespace PelotonDataGui
             InitializeComponent();
             Logger = this;
             Logger.Log("Starting up");
+            Assembly assembly = Assembly.GetExecutingAssembly();
+            Logger.Log($"Using assembly: {assembly.GetName().Name} version {assembly.GetName().Version}");
+            Assembly dataAssembly = Assembly.GetAssembly(typeof(PelotonDataDownloader));
+            Logger.Log($"Using assembly: {dataAssembly.GetName().Name} version {dataAssembly.GetName().Version}");
         }
 
         public void Log(LogEntry entry)
