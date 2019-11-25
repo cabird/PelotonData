@@ -112,7 +112,7 @@ namespace PelotonDataGui
             Logger.Log("Getting list of workouts");
             try
             {
-                workoutList = await p.GetWorkoutListAsync(auth, this);
+                workoutList = await p.GetWorkoutListAsync(auth, this, outputDirectory);
             } catch (Exception ex)
             {
                 HandleException(ex);
@@ -136,14 +136,25 @@ namespace PelotonDataGui
                     string path = filenameBase + "_Metrics.csv";
                     if (File.Exists(path))
                     {
-                        Logger.Log($"Skipping workout: {ride.ride.title} on {Util.DateTimeFromEpochSeconds(ride.device_time_created_at).ToShortDateString()} because file already exists");
+                        Logger.Log($"Already of workout metrics, skipping: {ride.ride.title} on {Util.DateTimeFromEpochSeconds(ride.device_time_created_at).ToShortDateString()}");
                     }
                     else
                     {
                         var data = await p.GetWorkoutMetricsAsync(ride, this, filenameBase + "_Metrics.json");
                         Logger.Log($"Writing data to {path}");
                         p.OutputRideCSV(data, path);
-                        var details = await p.GetWorkoutEventDetails(ride, this, filenameBase + "_EventDetails.json");
+                        //var details = await p.GetWorkoutEventDetails(ride, this, filenameBase + "_EventDetails.json");
+                    }
+
+                    string detailsPath = filenameBase + "_UserWorkoutDetails.csv";
+                    if (File.Exists(detailsPath))
+                    {
+                        Logger.Log($"Already have user details for workout, skipping: {ride.ride.title} on {Util.DateTimeFromEpochSeconds(ride.device_time_created_at).ToShortDateString()}");
+                    } else
+                    {
+                        var userDetails = await p.GetWorkoutUserDetails(ride, this, filenameBase + "_UserWorkoutDetails.json");
+                        var propertyDict = Util.GetObjectPropertiesAsDictionaryRecursive(userDetails);
+                        Util.WriteDictionaryAsCSV(propertyDict, filenameBase + "_UserWorkoutDetails.csv");
                     }
                 } catch (Exception ex)
                 {

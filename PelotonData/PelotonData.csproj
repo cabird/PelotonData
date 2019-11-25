@@ -54,6 +54,7 @@
     <Compile Include="ILogger.cs" />
     <Compile Include="JSONClasses\Authentication.cs" />
     <Compile Include="JSONClasses\EventDetails.cs" />
+    <Compile Include="JSONClasses\UserWorkoutDetails.cs" />
     <Compile Include="JSONClasses\WorkoutList.cs" />
     <Compile Include="JSONClasses\WorkoutSession.cs" />
     <Compile Include="PelotonDataDownloader.cs">

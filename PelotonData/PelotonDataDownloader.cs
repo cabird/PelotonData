@@ -115,7 +115,7 @@ namespace PelotonData
 
 
 
-        public async Task<List<RideDatum>> GetWorkoutListAsync(AuthResponse auth, ILogger logger)
+        public async Task<List<RideDatum>> GetWorkoutListAsync(AuthResponse auth, ILogger logger, string saveFileDirectory=null)
         {
             var rideDataList = new List<RideDatum>();
             string cookie = $"peloton_session_id={auth.session_id}";
@@ -142,6 +142,13 @@ namespace PelotonData
                     Debug.WriteLine("  " + response.Substring(0, 50));
                     Debug.WriteLine($"  Length: {response.Length}");
 
+                    if (saveFileDirectory != null)
+                    {
+                        string saveJsonPath = Path.Combine(saveFileDirectory, $"workoutListPage_{pageNum}.json");
+                        var formattedJson = JToken.Parse(response).ToString(Formatting.Indented);
+                        File.WriteAllText(saveJsonPath, formattedJson);
+                    }
+
                     WorkoutList workoutList = JsonConvert.DeserializeObject<WorkoutList>(response, JSonSerializerSettings);
                     if (logger != null) logger.Log($"Page retrieved, contains {workoutList.count} workouts");
 
@@ -163,6 +170,28 @@ namespace PelotonData
         public async Task Throttle()
         {
             await Task.Delay(ThrottleMilliseconds);
+        }
+
+        public async Task<UserWorkoutDetails> GetWorkoutUserDetails(RideDatum ride, ILogger logger, string SaveJsonPath=null)
+        {
+            //https://api.onepeloton.com/api/workout/887f8325e5a14ba0be00705aaa6f2db1
+            using (var client = new WebClient())
+            {
+                string url = $"https://api.onepeloton.com/api/workout/887f8325e5a14ba0be00705aaa6f2db1";
+                if (logger != null) logger.Log($"Downloading user ride details for workout: {ride.ride.title} on {Util.DateTimeFromEpochSeconds(ride.device_time_created_at).ToShortDateString()}");
+                var response = await client.DownloadStringTaskAsync(url);
+                Debug.WriteLine("  " + response.Substring(0, 50));
+                Debug.WriteLine($"  Length: {response.Length}");
+                if (logger != null) logger.Log($"Done downloading");
+
+                if (SaveJsonPath != null)
+                {
+                    var formattedJson = JToken.Parse(response).ToString(Formatting.Indented);
+                    File.WriteAllText(SaveJsonPath, formattedJson);
+                }
+                UserWorkoutDetails userDetails = JsonConvert.DeserializeObject<UserWorkoutDetails>(response, JSonSerializerSettings);
+                return userDetails;
+            }
         }
 
         public async Task<EventDetails> GetWorkoutEventDetails(RideDatum ride, ILogger logger, string SaveJsonPath=null)
