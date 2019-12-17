@@ -177,7 +177,7 @@ namespace PelotonData
             //https://api.onepeloton.com/api/workout/887f8325e5a14ba0be00705aaa6f2db1
             using (var client = new WebClient())
             {
-                string url = $"https://api.onepeloton.com/api/workout/887f8325e5a14ba0be00705aaa6f2db1";
+                string url = $"https://api.onepeloton.com/api/workout/{ride.id}";
                 if (logger != null) logger.Log($"Downloading user ride details for workout: {ride.ride.title} on {Util.DateTimeFromEpochSeconds(ride.device_time_created_at).ToShortDateString()}");
                 var response = await client.DownloadStringTaskAsync(url);
                 Debug.WriteLine("  " + response.Substring(0, 50));
