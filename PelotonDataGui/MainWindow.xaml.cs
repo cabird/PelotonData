@@ -133,6 +133,7 @@ namespace PelotonDataGui
             double progressStep = (100 - progress) / workoutList.Count;
 
             Logger.Log("Downloading data for each workout");
+            bool redownloadWorkoutDetails = RedownloadCheckbox.IsChecked.HasValue && RedownloadCheckbox.IsChecked.Value;
             foreach (var ride in workoutList)
             {
                 try
@@ -152,7 +153,7 @@ namespace PelotonDataGui
                     }
 
                     string detailsPath = filenameBase + "_UserWorkoutDetails.csv";
-                    if (File.Exists(detailsPath))
+                    if (File.Exists(detailsPath) && !redownloadWorkoutDetails)
                     {
                         Logger.Log($"Already have user details for workout, skipping: {ride.ride.title} on {Util.DateTimeFromEpochSeconds(ride.device_time_created_at).ToShortDateString()}");
                     } else

@@ -14,6 +14,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -32,9 +33,12 @@
         <TextBox Name="OutputDirectoryTextBox" HorizontalAlignment="Stretch" Height="24" Margin="0" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Row="3" Grid.Column="1"/>
         <Button Name="OutputDirectoryBrowseButton" Content="Browse" HorizontalAlignment="Right" Margin="10,0,0,0" VerticalAlignment="Center" Width="75" Grid.Row="3" Grid.Column="2" Click="OutputDirectoryBrowseButton_Click"/>
 
-        <Button Name="GetDataButton" Content="Get Data" HorizontalAlignment="Left" Margin="0,5" VerticalAlignment="Center" Width="88" Click="GetDataButton_Click" Grid.Row="4" Grid.Column="0" />
-        <ProgressBar Name="ProgressBar" HorizontalAlignment="Stretch" Height="15" Margin="0,5" VerticalAlignment="Center"  Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="3"/>
-        <TextBox Name="LogTextBox" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto" HorizontalAlignment="Stretch"  Margin="0" TextWrapping="Wrap" Text="" VerticalAlignment="Stretch"  Grid.Row="6" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="3"/>
+        <Label Content="Redownload Workout Details (e.g. Leaderboard rank)" HorizontalAlignment="Left" Height="30" Margin="0,0,10,0" Grid.Row="4" Grid.Column="0"/>
+        <CheckBox x:Name="RedownloadCheckbox" HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="0" Grid.Row="4" Grid.Column="1"/>
+        
+        <Button Name="GetDataButton" Content="Get Data" HorizontalAlignment="Left" Margin="0,5" VerticalAlignment="Center" Width="88" Click="GetDataButton_Click" Grid.Row="5" Grid.Column="0" />
+        <ProgressBar Name="ProgressBar" HorizontalAlignment="Stretch" Height="15" Margin="0,5" VerticalAlignment="Center"  Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="3"/>
+        <TextBox Name="LogTextBox" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto" HorizontalAlignment="Stretch"  Margin="0" TextWrapping="Wrap" Text="" VerticalAlignment="Stretch"  Grid.Row="7" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="3"/>
 
 
     </Grid>
